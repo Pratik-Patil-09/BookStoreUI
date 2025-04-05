@@ -21,33 +21,34 @@ git clone https://github.com/Pratik-Patil-09/BookStoreUI.git
 
 2. Run the tests with Maven:
 
-mvn clean test
+_mvn clean test_
 
 OR
 
-run _ testng.xml_
+__run _ testng.xml___
 
 3. View book details output in book_details.txt.
 
-🧪 Test Scenarios
+## 🧪 Test Scenarios
 
-User logs in with a valid username and password
+* User logs in with a valid username and password
 
-Username and Logout button are validated
+* Username and Logout button are validated
 
-User searches for Learning JavaScript Design Patterns
+* User searches for Learning JavaScript Design Patterns
 
-The script verifies the book appears in search results
+* The script verifies the book appears in search results
 
-Title, Author, and Publisher are written to a text file
+* Title, Author, and Publisher are written to a text file
 
-User logs out successfully
+* User logs out successfully
 
 
-📌 Author
-👤 Pratik Patil
+## 📌 Author
 
-💼 Automation Engineer | QA Enthusiast
+👤 _**Pratik Patil**_
+
+💼 **_Automation Engineer | QA Enthusiast_**
 
 
 
