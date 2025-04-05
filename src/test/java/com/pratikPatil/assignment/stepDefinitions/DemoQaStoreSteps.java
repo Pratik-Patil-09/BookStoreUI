@@ -8,15 +8,19 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class DemoQaStoreSteps extends BaseTest {
+    private static final Logger log = LoggerFactory.getLogger(DemoQaStoreSteps.class);
 
     @Given("User is on the login page")
     public void user_is_on_the_login_page() {
+        log.info("Opening DEMOQA login page");
         driver.get("https://demoqa.com/login");
     }
 
@@ -39,6 +43,7 @@ public class DemoQaStoreSteps extends BaseTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.id("userName-label"))));
         Assert.assertEquals(usernameText, "PratikPatil");
         Assert.assertTrue(logoutButton.isDisplayed(), "Logout button not visible");
+        log.info("Login Successfully!");
     }
 
     @When("User clicks on Book Store Application")
@@ -49,6 +54,7 @@ public class DemoQaStoreSteps extends BaseTest {
 
     @And("User searches for {string}")
     public void user_searches_for(String bookName) {
+        log.info("Searching book: {}", bookName);
         driver.findElement(By.id("searchBox")).sendKeys(bookName);
     }
 
@@ -67,8 +73,6 @@ public class DemoQaStoreSteps extends BaseTest {
         String publisher =
                 driver.findElement(By.xpath("//div[@class='rt-tr -odd']//child::div[4]")).getText();
 
-        System.out.println("Title: " + title + "Author: " + author + "Publisher: " + publisher);
-
         try (FileWriter bookFileName = new FileWriter("book_details.txt")) {
             bookFileName.write(title + "\n");
             bookFileName.write(author + "\n");
@@ -76,6 +80,7 @@ public class DemoQaStoreSteps extends BaseTest {
         } catch (IOException e) {
             throw new RuntimeException("Failed to write book details to file", e);
         }
+        log.info("Book deatils saved in - book_details.txt");
     }
 
     @When("User clicks on Logout")
@@ -87,5 +92,6 @@ public class DemoQaStoreSteps extends BaseTest {
     public void user_should_be_redirected_to_login_page() {
         WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login")));
         Assert.assertTrue(loginBtn.isDisplayed(), "User is not on login page");
+        log.info("User logged out successfully ! !");
     }
 }
